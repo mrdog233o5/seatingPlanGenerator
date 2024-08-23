@@ -3,11 +3,10 @@ const inputField = document.getElementsByClassName("inputField");
 const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("gender");
 const generateBtn = document.getElementById("generateBtn");
-const lockon = `belle taliya
+const luckedPairs = `belle taliya
 david william
 jerry louie
 yuzhi rishi`.toLowerCase().split("\n").map((value) => value.split(" "));
-console.log(lockon);
 var names = [];
 var genders = [];
 var male = [];
@@ -15,6 +14,7 @@ var female = [];
 var res = [];
 var x = 0;
 var y = 0;
+var luckPairs = [];
 
 // set border
 inputField[inputField.length - 1].style.border = "none";
@@ -39,6 +39,7 @@ function setSeat(xAxis, yAxis, value) {
 
 function readData() {
 	// read data
+	luckPairs = luckedPairs.slice()	;
 	names = nameInput.value.toLowerCase().split("\n");
 	genders = genderInput.value.toLowerCase().split("\n");
 
@@ -130,14 +131,14 @@ function generate() {
 			}
 			currentName = names[Math.floor(Math.random()*names.length)];
 
-			lockon.forEach((pair) => {
+			luckPairs.forEach((pair) => {
 				if (pair.includes(currentName)) {
 					nextName = (pair[0] == currentName ? pair[1] : pair[0]);
 					tempPair = pair;
 				}
 			});
 			if (tempPair != []) {
-				lockon.remove(tempPair);
+				luckPairs.remove(tempPair);
 				tempPair = [];
 			}
 			setSeat(i, j, currentName);
