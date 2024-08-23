@@ -3,6 +3,11 @@ const inputField = document.getElementsByClassName("inputField");
 const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("gender");
 const generateBtn = document.getElementById("generateBtn");
+const lockon = `belle taliya
+david william
+jerry louie
+yuzhi rishi`.toLowerCase().split("\n").map((value) => value.split(" "));
+console.log(lockon);
 var names = [];
 var genders = [];
 var male = [];
@@ -25,10 +30,17 @@ Array.prototype.remove = function() {
     return this;
 };
 
+function setSeat(xAxis, yAxis, value) {
+	res[yAxis][xAxis] = value;
+	names.remove(value);
+	male.remove(value);
+	female.remove(value);
+}
+
 function readData() {
 	// read data
-	names = nameInput.value.split("\n");
-	genders = genderInput.value.split("\n");
+	names = nameInput.value.toLowerCase().split("\n");
+	genders = genderInput.value.toLowerCase().split("\n");
 
 	names = `Samuel
 Rishi
@@ -52,7 +64,7 @@ Adianna
 Dani
 Louie
 Belle
-Winston`.split("\n");
+Winston`.toLowerCase().split("\n");
 	genders = `m
 m
 m
@@ -75,7 +87,7 @@ f
 m
 m
 f
-m`.split("\n");
+m`.toLowerCase().split("\n");
 	male = [];
 	female = [];
 	res = [];
@@ -102,14 +114,33 @@ m`.split("\n");
 }
 
 function generate() {
-	var tempName = "";
+	var currentName = "";
+	var nextName = "";
+	var tempPair = [];
 	for (let i = 0; i < x; i++) {
 		// every row
 		for (let j = 0; j < y; j++) {
 			// every seat
-			tempName = names[Math.floor(Math.random()*names.length)];
-			names.remove(tempName);
-			res[j][i] = tempName;
+
+			if (nextName != "") {
+				currentName = nextName.slice();
+				nextName = "";
+				setSeat(i, j, currentName);
+				continue;
+			}
+			currentName = names[Math.floor(Math.random()*names.length)];
+
+			lockon.forEach((pair) => {
+				if (pair.includes(currentName)) {
+					nextName = (pair[0] == currentName ? pair[1] : pair[0]);
+					tempPair = pair;
+				}
+			});
+			if (tempPair != []) {
+				lockon.remove(tempPair);
+				tempPair = [];
+			}
+			setSeat(i, j, currentName);
 		}
 	}
 	console.log(res);
