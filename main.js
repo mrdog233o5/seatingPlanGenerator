@@ -115,9 +115,11 @@ function generate() {
 function showResult() {
 	res.forEach((name, index) => {
 		if (name != undefined) {
-			result.innerHTML += `<div class="seat" data-swapy-slot="${index}">
+			result.innerHTML += `
+			<div class="seat" data-swapy-slot="${index}">
 				<p class="name" data-swapy-item="${index}">${name}</p>
-			</div>`
+			</div>
+			`
 		}
 	})
 	const swapy = Swapy.createSwapy(result)
