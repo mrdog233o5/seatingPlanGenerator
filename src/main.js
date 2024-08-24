@@ -46,7 +46,7 @@ function setSeat(xAxis, yAxis, value = "") {
 
 function readData() {
 	// read data
-	// luckPairs = luckedPairs.slice();
+	luckPairs = luckedPairs.slice();
 	names = nameInput.value.toLowerCase().split("\n");
 	genders = genderInput.value.toLowerCase().split("\n");
 
