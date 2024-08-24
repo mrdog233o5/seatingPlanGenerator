@@ -24,9 +24,6 @@ body {
     box-sizing: border-box;
 }
 
-span,p,div,a {
-    transition: transform .3s, scale 0.3s;
-}
 
 .container {
 	display: flex;
@@ -122,6 +119,16 @@ textarea::placeholder, input::placeholder {
 
 .result {
 	display: none;
+}
+
+.result:hover:has(.seat:hover) .seat:not(:hover) {
+    background: rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(128px) saturate(1.6);
+    backdrop-filter: blur(128px) saturate(1.6);
+    transform: scale(0.95);
+    animation-duration: 0.5s;
+    transition: background 0.5s, transform 1s, all 0.3s;
+
 }
 
 #teacher {

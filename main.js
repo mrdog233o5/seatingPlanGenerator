@@ -115,11 +115,12 @@ function generate() {
 function showResult() {
 	res.forEach((name, index) => {
 		if (name != undefined) {
-			result.innerHTML += `<div class="seat">
-				<p class="name">${name}</p>
+			result.innerHTML += `<div class="seat" data-swapy-slot="${index}">
+				<p class="name" data-swapy-item="${index}">${name}</p>
 			</div>`
 		}
 	})
+	const swapy = Swapy.createSwapy(result)
 }
 
 function setStyle() {
