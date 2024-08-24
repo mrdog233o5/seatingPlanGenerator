@@ -7,27 +7,33 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<title>seating generator</title>
-		<script defer type="module" src="/src/main.js"></script>
+		<script defer type="module" src="main.js"></script>
+		<script defer src="dynamicBlob.js"></script>
 	</head>
 	<body>
-		<div id="left">
-			<h1>input</h1>
-			<span id="seatDataInput">
-				<input type="number" min="0" oninput="validity.valid||(value='');" name="" id="x" placeholder="width" />
-				<input type="number" min="0" oninput="validity.valid||(value='');" name="" id="y" placeholder="height" />
-			</span>
-			<div id="inputContainer">
-				<textarea name="" class="inputField" id="name" placeholder="name" ></textarea>
-				<textarea name="" class="inputField" id="gender" placeholder="gender(m/f)" ></textarea>
+		<div class="container">
+			<div data-force-form="random" id="blob" class="blob"></div>
+			<div class="input">
+				<span id="seatDataInput">
+					<input type="number" min="0" oninput="validity.valid||(value='');" name="" id="x" placeholder="width" />
+					<input type="number" min="0" oninput="validity.valid||(value='');" name="" id="y" placeholder="height" />
+				</span>
+				<div id="inputContainer">
+					<textarea wrap="off" name="" id="name" placeholder="name" ></textarea>
+					<textarea wrap="off" name="" id="gender" placeholder="gender(m/f)" ></textarea>
+				</div>
+				<button type="button" id="generateBtn">Generate!</button>
 			</div>
-			<button type="button" id="generateBtn">generate</button>
-		</div>
-		<div id="right">
-			<h1>result</h1>
-			<div id="classroom">
-				<div id="teacher">teacher</div>
-				<div id="result">
+			<div class="result">
+				<h1>Result</h1>
+				<div id="classroom">
+					<div id="teacher">teacher</div>
+					<div id="result">
+					</div>
 				</div>
 			</div>
 		</div>

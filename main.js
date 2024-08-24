@@ -1,5 +1,5 @@
 const inputContainer = document.getElementById("inputContainer");
-const inputField = document.getElementsByClassName("inputField");
+const inputField = document.querySelectorAll("textarea");
 const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("gender");
 const result = document.getElementById("result");
@@ -92,6 +92,7 @@ function getNextName(lastName, index) {
 }
 
 function generate() {
+	document.getElementsByClassName("result")[0].style.display = "flex";
 	result.innerHTML = "";
 	var currentName = "";
 	var avaiableNames = names.slice();
