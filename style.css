@@ -87,6 +87,14 @@ input, textarea {
 	border-radius: 5px;
 	border: 1px solid #ccc;
 	box-shadow: 1px 1px 1px #999;
+	background: transparent;
+    -webkit-backdrop-filter: blur(64px) saturate(1.6);
+    backdrop-filter: blur(64px) saturate(1.6);
+	resize: none
+}
+
+textarea::placeholder, input::placeholder {
+	color: #fff;
 }
 
 #classroom, .input{
@@ -240,7 +248,7 @@ button {
 	border: none;
     outline: none;
     color: #fff;
-    background: #111;
+    background: rgba(17, 17, 17, 1);
     cursor: pointer;
     position: relative;
     z-index: 0;
