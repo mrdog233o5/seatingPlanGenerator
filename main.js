@@ -4,6 +4,7 @@ const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("gender");
 const result = document.getElementById("result");
 const generateBtn = document.getElementById("generateBtn");
+const textareaEle = document.querySelectorAll('textarea');
 const luckedPairs = `belle taliya
 david william
 jerry louie
@@ -144,3 +145,10 @@ document.getElementById("form").onsubmit = (e) => {
 }
 
 setStyle();
+
+textareaEle.forEach((ele) => {
+	ele.oninput = () => {
+		ele.style.height = 'auto';
+		ele.style.height = `${ele.scrollHeight}px`;
+	};
+});

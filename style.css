@@ -56,15 +56,6 @@ span,p,div,a {
 	justify-content: center;
 }
 
-.input {
-	-webkit-backdrop-filter: blur(64px) saturate(1.6);
-    backdrop-filter: blur(64px) saturate(1.6);
-    background: rgba(255, 255, 255, 0.2);
-	margin-top: 20px;
-	transition: all 0.5s;
-	transform: scale(1.1);
-}
-
 #inputContainer {
     overflow: hidden;
     display: flex;
@@ -88,9 +79,13 @@ input, textarea {
 	border: 1px solid #ccc;
 	box-shadow: 1px 1px 1px #999;
 	background: transparent;
-    -webkit-backdrop-filter: blur(64px) saturate(1.6);
+	resize: none;
+	overflow: hidden;
+}
+
+input::after, textarea::after {
+	-webkit-backdrop-filter: blur(64px) saturate(1.6);
     backdrop-filter: blur(64px) saturate(1.6);
-	resize: none
 }
 
 textarea::placeholder, input::placeholder {
@@ -100,13 +95,29 @@ textarea::placeholder, input::placeholder {
 #classroom, .input{
 	border: #000000 1px solid;
     box-sizing: border-box;
-	width: 80%;
 	border-radius: 16px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	animation: showResult 0.5s;
+}
+
+#classroom {
+	border: 2px solid linear-gradient(45deg,#f83a3a 10%,#f13dd4 50%,#7000ff 90%);
+	box-shadow: 0 0px 6px rgba(22,136,240,0.1), 0 0px 6px rgba(22,136,240,0.1);
+	background: rgba(255, 255, 255, 0.1);
+	width: 100%;
+}
+
+.input {
+	-webkit-backdrop-filter: blur(64px) saturate(1.6);
+    backdrop-filter: blur(64px) saturate(1.6);
+    background: rgba(255, 255, 255, 0.2);
+	margin-top: 20px;
+	transition: all 0.5s;
+	transform: scale(1.1);
+	width: 60%;
 }
 
 .result {
