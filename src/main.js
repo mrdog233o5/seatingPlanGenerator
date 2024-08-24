@@ -7,7 +7,8 @@ const generateBtn = document.getElementById("generateBtn");
 const luckedPairs = `belle taliya
 david william
 jerry louie
-yuzhi rishi`
+yuzhi rishi
+hendre samuel`
 	.toLowerCase()
 	.split("\n")
 	.map((value) => value.split(" "));
