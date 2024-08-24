@@ -2,6 +2,7 @@ const inputContainer = document.getElementById("inputContainer");
 const inputField = document.getElementsByClassName("inputField");
 const nameInput = document.getElementById("name");
 const genderInput = document.getElementById("gender");
+const result = document.getElementById("result");
 const generateBtn = document.getElementById("generateBtn");
 const luckedPairs = `belle taliya
 david william
@@ -45,60 +46,10 @@ function setSeat(xAxis, yAxis, value = "") {
 
 function readData() {
 	// read data
-	luckPairs = luckedPairs.slice();
+	// luckPairs = luckedPairs.slice();
 	names = nameInput.value.toLowerCase().split("\n");
 	genders = genderInput.value.toLowerCase().split("\n");
 
-	names = `Samuel
-Rishi
-Ian
-Jade
-William
-Taliya
-Keira
-Clementine
-Tiffany
-Hendre
-Jerry
-Hin Ching
-Hin Lung
-Yuzhi
-Valerie
-Hailey
-David
-Lucy
-Adianna
-Dani
-Louie
-Belle
-Winston`
-		.toLowerCase()
-		.split("\n");
-	genders = `m
-m
-m
-f
-m
-f
-f
-f
-f
-m
-m
-f
-m
-m
-f
-f
-m
-f
-f
-m
-m
-f
-m`
-		.toLowerCase()
-		.split("\n");
 	male = [];
 	female = [];
 	res = [];
@@ -110,50 +61,79 @@ m`
 			female.push(name);
 		}
 	});
-
-	x = document.getElementById("x").value;
-	y = document.getElementById("y").value;
 }
 
-function getNextName(lastName) {
+function getNextName(lastName, index) {	
 	var nextNames = [];
+	var isLucky = false;
 	nextNames = names.slice();
 	luckPairs.forEach((pair) => {
-		if (pair.includes(lastName)) {
+		if (pair.includes(lastName) && !isLucky) {
 			nextNames = [
 				pair[0] == lastName
 					? pair[1]
 					: pair[0]
 			];
 			luckPairs.remove(pair);
+			isLucky = true;
 		}
 	});
 	
+	if (x - index % x != 2 || isLucky) return nextNames;
+
+	nextNames = names.slice();
+	luckPairs.forEach((pair) => {
+		nextNames.remove(pair[0]);
+		nextNames.remove(pair[1]);
+	});
+	if (nextNames.length == 0) return names;
 	return nextNames;
 }
 
 function generate() {
+	result.innerHTML = "";
 	var currentName = "";
 	var avaiableNames = names.slice();
-	for (let i = 0; i < x; i++) {
+	for (let i = 0; i < y; i++) {
 		// every row
-		var row = [];
-		for (let j = 0; j < y; j++) {
+		for (let j = 0; j < x; j++) {
 			// every seat
 			currentName = avaiableNames[Math.floor(Math.random() * avaiableNames.length)];
 			avaiableNames = [];
 			setSeat(i, j, currentName);
-			row.push(currentName);
+			res.push(currentName);
 
 			// luck system
-			avaiableNames = getNextName(currentName);
+			avaiableNames = getNextName(currentName, i*x+j);
 		}
-		res.push(row);
 	}
-	console.log(res);
+}
+
+function showResult() {
+	res.forEach((name, index) => {
+		if (name != undefined) {
+			result.innerHTML += `<div class="seat">
+				<p class="name">${name}</p>
+			</div>`
+		}
+	})
+}
+
+function setStyle() {
+	x = document.getElementById("x").value;
+	y = document.getElementById("y").value;
+	var seats = document.getElementsByClassName("seat");
+	Array.from(seats).forEach((seat) => {
+		seat.style.width = `${(result.getBoundingClientRect().width - (x - 1) * 8) / x}px`;
+		seat.style.height = `${(result.getBoundingClientRect().width - (x - 1) * 8) / x}px`;
+	});
+	requestAnimationFrame(setStyle);
 }
 
 generateBtn.onclick = () => {
 	readData();
 	generate();
+	showResult();
 };
+
+setStyle();

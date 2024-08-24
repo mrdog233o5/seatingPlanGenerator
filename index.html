@@ -2,23 +2,34 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="style.css" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>seating generator</title>
+		<script defer type="module" src="/src/main.js"></script>
 	</head>
 	<body>
-		<span id="seatDataInput">
-			<input type="number" name="" id="x" placeholder="width">
-			<input type="number" name="" id="y" placeholder="height">
-		</span>
-		<div id="inputContainer">
-			<textarea name="" class="inputField" id="name" placeholder="name"></textarea>
-			<textarea name="" class="inputField" id="gender" placeholder="gender(m/f)"></textarea>
+		<div id="left">
+			<h1>input</h1>
+			<span id="seatDataInput">
+				<input type="number" name="" id="x" placeholder="width" />
+				<input type="number" name="" id="y" placeholder="height" />
+			</span>
+			<div id="inputContainer">
+				<textarea name="" class="inputField" id="name" placeholder="name" ></textarea>
+				<textarea name="" class="inputField" id="gender" placeholder="gender(m/f)" ></textarea>
+			</div>
+			<button type="button" id="generateBtn">generate</button>
 		</div>
-		<button type="button" id="generateBtn">generate</button>
-		<script type="module" src="/src/main.js"></script>
+		<div id="right">
+			<h1>result</h1>
+			<div id="classroom">
+				<div id="teacher">teacher</div>
+				<div id="result">
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
