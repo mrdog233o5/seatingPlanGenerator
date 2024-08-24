@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" href="style.css" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-		<title>seating generator</title>
-		<script defer type="module" src="main.js"></script>
-		<script defer src="dynamicBlob.js"></script>
-	</head>
-	<body>
-		<div class="container">
-			<div data-force-form="random" id="blob" class="blob"></div>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Seating Generator</title>
+    <script defer type="module" src="main.js"></script>
+    <script defer src="dynamicBlob.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div data-force-form="random" id="blob" class="blob"></div>
+		<form id="form">
 			<div class="input">
 				<span id="seatDataInput">
-					<input type="number" min="0" oninput="validity.valid||(value='');" name="" id="x" placeholder="width" />
-					<input type="number" min="0" oninput="validity.valid||(value='');" name="" id="y" placeholder="height" />
+					<input type="number" min="0" oninput="validity.valid||(value='');" id="x" placeholder="Width" required />
+					<input type="number" min="0" oninput="validity.valid||(value='');" id="y" placeholder="Height" required />
 				</span>
 				<div id="inputContainer">
-					<textarea wrap="off" name="" id="name" placeholder="name" ></textarea>
-					<textarea wrap="off" name="" id="gender" placeholder="gender(m/f)" ></textarea>
+					<textarea wrap="off" id="name" placeholder="Name" required></textarea>
+					<textarea wrap="off" id="gender" placeholder="Gender (M/F)"></textarea>
 				</div>
-				<button type="button" id="generateBtn">Generate!</button>
-			</div>
-			<div class="result">
-				<h1>Result</h1>
-				<div id="classroom">
-					<div id="teacher">teacher</div>
-					<div id="result">
-					</div>
+				<div class="gContainer">
+					<button type="submit" id="generateBtn">Generate!</button>
 				</div>
 			</div>
-		</div>
-	</body>
+		</form>
+        <div class="result">
+            <h1>Result</h1>
+            <div id="classroom">
+                <div id="teacher">Teacher</div>
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

@@ -132,10 +132,15 @@ function setStyle() {
 	requestAnimationFrame(setStyle);
 }
 
-generateBtn.onclick = () => {
+function buttonSubmitted() {
 	readData();
 	generate();
 	showResult();
-};
+}
+
+document.getElementById("form").onsubmit = (e) => {
+	e.preventDefault();
+	buttonSubmitted();
+}
 
 setStyle();
