@@ -6,7 +6,10 @@ const generateBtn = document.getElementById("generateBtn");
 const luckedPairs = `belle taliya
 david william
 jerry louie
-yuzhi rishi`.toLowerCase().split("\n").map((value) => value.split(" "));
+yuzhi rishi`
+	.toLowerCase()
+	.split("\n")
+	.map((value) => value.split(" "));
 var names = [];
 var genders = [];
 var male = [];
@@ -19,27 +22,30 @@ var luckPairs = [];
 // set border
 inputField[inputField.length - 1].style.border = "none";
 
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
+Array.prototype.remove = function () {
+	var what,
+		a = arguments,
+		L = a.length,
+		ax;
+	while (L && this.length) {
+		what = a[--L];
+		while ((ax = this.indexOf(what)) !== -1) {
+			this.splice(ax, 1);
+		}
+	}
+	return this;
 };
 
-function setSeat(xAxis, yAxis, value) {
-	res[yAxis][xAxis] = value;
+function setSeat(xAxis, yAxis, value = "") {
 	names.remove(value);
 	male.remove(value);
 	female.remove(value);
+	return value;
 }
 
 function readData() {
 	// read data
-	luckPairs = luckedPairs.slice()	;
+	luckPairs = luckedPairs.slice();
 	names = nameInput.value.toLowerCase().split("\n");
 	genders = genderInput.value.toLowerCase().split("\n");
 
@@ -65,7 +71,9 @@ Adianna
 Dani
 Louie
 Belle
-Winston`.toLowerCase().split("\n");
+Winston`
+		.toLowerCase()
+		.split("\n");
 	genders = `m
 m
 m
@@ -88,7 +96,9 @@ f
 m
 m
 f
-m`.toLowerCase().split("\n");
+m`
+		.toLowerCase()
+		.split("\n");
 	male = [];
 	female = [];
 	res = [];
@@ -103,46 +113,42 @@ m`.toLowerCase().split("\n");
 
 	x = document.getElementById("x").value;
 	y = document.getElementById("y").value;
-	x = 23;
-	y = 1;
-	var tempArr = [];
-	for (let i = 0; i < x; i++) {
-		tempArr.push("");
-	}
-	for (let i = 0; i < y; i++) {
-		res.push(tempArr);
-	}
+}
+
+function getNextName(lastName) {
+	var nextNames = [];
+	nextNames = names.slice();
+	luckPairs.forEach((pair) => {
+		if (pair.includes(lastName)) {
+			nextNames = [
+				pair[0] == lastName
+					? pair[1]
+					: pair[0]
+			];
+			luckPairs.remove(pair);
+		}
+	});
+	
+	return nextNames;
 }
 
 function generate() {
 	var currentName = "";
-	var nextName = "";
-	var tempPair = [];
+	var avaiableNames = names.slice();
 	for (let i = 0; i < x; i++) {
 		// every row
+		var row = [];
 		for (let j = 0; j < y; j++) {
 			// every seat
-
-			if (nextName != "") {
-				currentName = nextName.slice();
-				nextName = "";
-				setSeat(i, j, currentName);
-				continue;
-			}
-			currentName = names[Math.floor(Math.random()*names.length)];
-
-			luckPairs.forEach((pair) => {
-				if (pair.includes(currentName)) {
-					nextName = (pair[0] == currentName ? pair[1] : pair[0]);
-					tempPair = pair;
-				}
-			});
-			if (tempPair != []) {
-				luckPairs.remove(tempPair);
-				tempPair = [];
-			}
+			currentName = avaiableNames[Math.floor(Math.random() * avaiableNames.length)];
+			avaiableNames = [];
 			setSeat(i, j, currentName);
+			row.push(currentName);
+
+			// luck system
+			avaiableNames = getNextName(currentName);
 		}
+		res.push(row);
 	}
 	console.log(res);
 }
@@ -150,4 +156,4 @@ function generate() {
 generateBtn.onclick = () => {
 	readData();
 	generate();
-}
+};
