@@ -82,11 +82,6 @@ input, textarea {
 	overflow: hidden;
 }
 
-input::after, textarea::after {
-	-webkit-backdrop-filter: blur(64px) saturate(1.6);
-    backdrop-filter: blur(64px) saturate(1.6);
-}
-
 textarea::placeholder, input::placeholder {
 	color: #fff;
 }
@@ -105,14 +100,12 @@ textarea::placeholder, input::placeholder {
 #classroom {
 	border: 2px solid linear-gradient(45deg,#f83a3a 10%,#f13dd4 50%,#7000ff 90%);
 	box-shadow: 0 0px 6px rgba(22,136,240,0.1), 0 0px 6px rgba(22,136,240,0.1);
-	background: rgba(255, 255, 255, 0.1);
+	background: rgba(0, 0, 0, 0.1);
 	width: 100%;
 }
 
 .input {
-	-webkit-backdrop-filter: blur(64px) saturate(1.6);
-    backdrop-filter: blur(64px) saturate(1.6);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
 	margin-top: 20px;
 	transition: all 0.5s;
 	transform: scale(1.1);
@@ -124,13 +117,17 @@ textarea::placeholder, input::placeholder {
 }
 
 .result:hover:has(.seat:hover) .seat:not(:hover) {
-    background: rgba(0, 0, 0, 0.3);
-    -webkit-backdrop-filter: blur(128px) saturate(1.6);
-    backdrop-filter: blur(128px) saturate(1.6);
+    background: rgba(0, 0, 0, 0.4);
     transform: scale(0.95);
     animation-duration: 0.5s;
     transition: background 0.5s, transform 1s, all 0.3s;
 
+}
+
+.seat:hover {
+	background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.01);
+	transition: background 0.5s, transform 1s, all 0.3s;
 }
 
 #teacher {
@@ -142,7 +139,6 @@ textarea::placeholder, input::placeholder {
 	border: #000000 1px solid;
 	border-radius: 8px;
 	text-align: center;
-	background: rgba(255, 255, 255, 1);
 }
 
 #result {
@@ -165,9 +161,7 @@ textarea::placeholder, input::placeholder {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-    -webkit-backdrop-filter: blur(64px) saturate(1.6);
-    backdrop-filter: blur(64px) saturate(1.6);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     transition: background 0.5s, transform 1s, all 0.3s;
 }
 
