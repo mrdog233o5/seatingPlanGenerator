@@ -23,7 +23,6 @@ var y = 0;
 var luckPairs = [];
 
 // set border
-inputField[inputField.length - 1].style.border = "none";
 
 Array.prototype.remove = function () {
 	var what,
