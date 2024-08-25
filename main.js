@@ -117,7 +117,7 @@ function showResult() {
 		if (name != undefined) {
 			result.innerHTML += `
 			<div class="seat" data-swapy-slot="${index}">
-				<p class="name" data-swapy-item="${index}">${name}</p>
+				<p class="name" data-swapy-item="${name}">${name}</p>
 			</div>
 			`
 		}
